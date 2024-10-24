@@ -11,8 +11,8 @@ const links = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
   { name: "News", href: "/news" },
-  { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
+  { name: "Contact", href: "/blog"},
 ];
 
 export const Navbar = () => {
