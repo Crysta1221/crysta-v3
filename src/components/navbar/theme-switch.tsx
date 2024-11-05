@@ -1,13 +1,18 @@
 "use client";
 
 import * as React from "react";
+import { useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
+
+  useEffect(() => {
+    setTheme(theme === "light" ? "light" : "dark");
+  }, []);
 
   return (
     <Button
