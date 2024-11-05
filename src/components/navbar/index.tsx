@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+// @ts-ignore
 import crystaImage from "@/assets/images/crysta.jpeg";
 
 const links = [
@@ -94,29 +95,6 @@ export const Navbar = () => {
               variant='ghost'
               className='rounded-full size-9 border-none text-white dark:text-black bg-neutral-800 dark:bg-white/80 hover:bg-neutral-800 hover:dark:bg-white/80 hover:text-white'
               onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              <AnimatePresence mode='wait' initial={false}>
-                <motion.span
-                  key={isMenuOpen ? "open" : "closed"}
-                  initial={{
-                    opacity: 0,
-                    rotate: isMenuOpen ? 0 : 45,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    rotate: isMenuOpen ? 90 : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    rotate: isMenuOpen ? 0 : 45,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 500,
-                    damping: 20,
-                  }}>
-                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </motion.span>
-              </AnimatePresence>
             </Button>
           </div>
         </div>
