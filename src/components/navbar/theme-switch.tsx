@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function ModeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -15,14 +15,22 @@ export function ModeToggle() {
   }, []);
 
   if (!mounted) {
-    return null;
+    return (
+      <Button
+        variant='ghost'
+        className='rounded-full size-9 border-none hover:bg-white hover:dark:bg-neutral-700'>
+        <span className='opacity-0'>
+          <Sun size={24} />
+        </span>
+      </Button>
+    );
   }
 
   return (
     <Button
       variant='ghost'
-      className='rounded-full size-9 border md:border-none hover:bg-white hover:dark:bg-neutral-700'
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+      className='rounded-full size-9 border-none hover:bg-white hover:dark:bg-neutral-700'
+      onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}>
       <AnimatePresence mode='wait' initial={false}>
         <motion.span
           initial={{
@@ -40,8 +48,8 @@ export function ModeToggle() {
           transition={{
             type: "keyframes",
           }}
-          key={theme}>
-          {theme === "dark" ? <Moon size={24} /> : <Sun size={24} />}
+          key={resolvedTheme}>
+          {resolvedTheme === "dark" ? <Moon size={24} /> : <Sun size={24} />}
         </motion.span>
       </AnimatePresence>
     </Button>
