@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import crystaImage from "@/assets/images/crysta.jpeg";
 import { ModeToggle } from "./theme-switch";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { links } from "./index";
 import { Button } from "@/components/ui/button";
 
@@ -18,24 +19,87 @@ export const MobileViewport = () => {
     setSelectedLink(pathname);
   }, [pathname]);
   return (
-    <div className='relative flex w-full items-center rounded-full border p-1.5 md:hidden mx-3'>
-      <div className='flex items-center mx-4 gap-2'>
-        <Image
-          src={crystaImage}
-          alt='Crysta'
-          width={40}
-          height={40}
-          className='rounded-full'
-        />
-      </div>
-      <div className='flex grow' />
-      <div className='flex items-center mx-4 mt-[1.5px] gap-3'>
-        <ModeToggle />
-        <Button
-          variant='ghost'
-          className='rounded-full size-9 border-none text-white dark:text-black bg-neutral-800 dark:bg-white/80 hover:bg-neutral-800 hover:dark:bg-white/80 hover:text-white'
-          onClick={() => setIsMenuOpen(!isMenuOpen)}></Button>
-      </div>
-    </div>
+    <>
+      <div className='relative flex w-full items-center rounded-full border p-1.5 md:hidden mx-3 bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 z-20'>
+        <div className='flex items-center mx-4 gap-2'>
+          <Image
+            src={crystaImage}
+            alt='Crysta'
+            width={40}
+            height={40}
+            className='rounded-full'
+          />
+        </div>{" "}
+        <div className='flex grow' />{" "}
+        <div className='flex items-center mx-4 mt-[1.5px] gap-3'>
+          <ModeToggle />
+          <Button
+            variant='ghost'
+            className='border rounded-full size-8 z-30'
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}>
+            <AnimatePresence initial={false} mode='wait'>
+              {isMenuOpen ? (
+                <motion.div
+                  key='close'
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}>
+                  <X className='h-5 w-5' />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key='menu'
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: -90 }}
+                  transition={{ duration: 0.2 }}>
+                  <Menu className='h-5 w-5' />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Button>
+        </div>
+      </div>{" "}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className='fixed inset-0 bg-white dark:bg-black z-40'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}>
+            {" "}
+            <div className='mx-auto max-w-5xl pt-5'>
+              <div className='mx-auto flex w-full items-center justify-center'>
+                <div className='relative flex w-full items-center rounded-full border-0 p-1.5 mx-3'>
+                  <div className='flex items-center mx-4 gap-2'>
+                    <Image
+                      src={crystaImage}
+                      alt='Crysta'
+                      width={40}
+                      height={40}
+                      className='rounded-full'
+                    />
+                  </div>
+                  <div className='flex grow' />{" "}
+                  <div className='flex items-center mx-4 mt-[1.5px] gap-3'>
+                    <ModeToggle />
+                    <Button
+                      variant='ghost'
+                      className='border rounded-full size-8'
+                      onClick={() => setIsMenuOpen(false)}
+                      aria-label='メニューを閉じる'>
+                      <X className='h-5 w-5' />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
