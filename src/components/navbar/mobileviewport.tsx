@@ -97,6 +97,27 @@ export const MobileViewport = () => {
                 </div>
               </div>
             </div>
+            <div className='p-10'>
+              <p className='text-muted-foreground text-xs'>MENU</p>
+              <div className='py-2 flex flex-col gap-5 mt-2'>
+                {links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => {
+                      setSelectedLink(link.href);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`text-sm font-medium transition-colors duration-200 ease-in-out ${
+                      selectedLink === link.href
+                        ? "text-green-600 dark:text-green-500"
+                        : "text-black dark:text-white hover:text-primary"
+                    }`}>
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
