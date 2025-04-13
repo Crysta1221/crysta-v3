@@ -3,6 +3,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/provider";
 import "../assets/css/style.scss";
 import { Navbar } from "@/components/navbar";
+import { SpaceBackground } from "@/components/star/space-background";
 
 const noto = Noto_Sans_JP({
   weight: "400",
@@ -29,6 +30,7 @@ export default function RootLayout({
           defaultTheme='system'
           enableSystem
           disableTransitionOnChange>
+          <SpaceBackground starCount={100} meteorFrequency={10000} />
           <Navbar />
           {children}
         </ThemeProvider>

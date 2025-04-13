@@ -4,7 +4,9 @@
 
 body {
   font-family: "Noto Sans JP", sans-serif;
-  @apply bg-white dark:bg-zinc-900/80;
+  @apply bg-gradient-to-b from-blue-600/[.70] via-[#93B9EE] to-[#BE9FA4] dark:bg-zinc-900/80 dark:bg-none;
+  min-height: 100vh;
+  background-attachment: fixed;
 }
 
 @layer utilities {
@@ -81,6 +83,78 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-zinc-950 text-foreground;
+    @apply dark:bg-zinc-950 text-foreground;
+  }
+}
+
+.space-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+  background: transparent;
+}
+
+.space-star {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  animation: twinkle 5s infinite ease-in-out;
+}
+
+.space-meteor {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  animation-name: shooting;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-duration: 12s;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+    0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
+  z-index: 2;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 150px;
+    height: 1px;
+    background: linear-gradient(90deg, #fff, transparent);
+    transform: translateY(-50%) translateX(100%);
+    z-index: 1;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes shooting {
+  0% {
+    transform: rotate(315deg) translateX(100vw);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(315deg) translateX(-100vw);
+    opacity: 0;
   }
 }
