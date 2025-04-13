@@ -18,7 +18,7 @@ export function ModeToggle() {
     return (
       <Button
         variant='ghost'
-        className='rounded-full size-9 border-none hover:bg-white hover:dark:bg-neutral-700'>
+        className='rounded-full size-9 border-none hover:bg-neutral-100/70 hover:dark:bg-neutral-700'>
         <span className='opacity-0'>
           <Sun size={24} />
         </span>
@@ -29,7 +29,7 @@ export function ModeToggle() {
   return (
     <Button
       variant='ghost'
-      className='rounded-full size-9 border-none hover:bg-white hover:dark:bg-neutral-700'
+      className='rounded-full size-9 border-none hover:bg-neutral-100/70 hover:dark:bg-neutral-700'
       onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}>
       <AnimatePresence mode='wait' initial={false}>
         <motion.span
