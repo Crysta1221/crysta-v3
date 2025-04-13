@@ -36,7 +36,7 @@ export const PCViewport = () => {
           {pathname === link.href && (
             <motion.div
               layoutId='underline'
-              className='absolute inset-0 rounded-full bg-white dark:bg-neutral-700'
+              className='absolute inset-0 rounded-full bg-neutral-100/70 dark:bg-neutral-700'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
