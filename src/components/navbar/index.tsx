@@ -14,8 +14,8 @@ export const links = [
 
 export const Navbar = () => {
   return (
-    <header className='mx-auto max-w-5xl py-5'>
-      <div className='mx-auto flex w-full items-center justify-center'>
+    <header className='fixed top-0 left-0 right-0 z-50 x-auto py-5'>
+      <div className='mx-auto max-w-5xl flex w-full items-center justify-center'>
         {/* PC Viewport Component */}
         <PCViewport />
         {/* Mobile Viewport Component */}
