@@ -16,7 +16,7 @@ export const PCViewport = () => {
     setSelectedLink(pathname);
   }, [pathname]);
   return (
-    <div className='relative w-fit items-center rounded-full p-1.5 hidden md:inline-flex bg-[#f5f5f5] dark:bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10'>
+    <div className='relative w-fit items-center rounded-full p-1.5 hidden md:inline-flex bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10'>
       <div className='flex items-center mx-4 gap-2'>
         <Image
           src={crystaImage}
