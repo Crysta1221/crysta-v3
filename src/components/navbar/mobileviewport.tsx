@@ -20,7 +20,7 @@ export const MobileViewport = () => {
   }, [pathname]);
   return (
     <>
-      <div className='relative flex w-full items-center rounded-full dark:border p-1.5 md:hidden mx-3 bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 z-20'>
+      <div className='relative flex w-full items-center rounded-full dark:border p-1.5 md:hidden mx-3 bg-slate-500 dark:bg-[#252525] bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 z-20'>
         <div className='flex items-center mx-4 gap-2'>
           <Image
             src={crystaImage}

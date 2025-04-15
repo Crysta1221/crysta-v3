@@ -16,7 +16,7 @@ export const PCViewport = () => {
     setSelectedLink(pathname);
   }, [pathname]);
   return (
-    <div className='relative w-fit items-center rounded-full p-1.5 hidden md:inline-flex bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10'>
+    <div className='relative w-fit items-center rounded-full dark:border p-1.5 hidden md:inline-flex bg-slate-500 dark:bg-[#252525] bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10'>
       <div className='flex items-center mx-4 gap-2'>
         <Image
           src={crystaImage}
@@ -36,7 +36,7 @@ export const PCViewport = () => {
           {pathname === link.href && (
             <motion.div
               layoutId='underline'
-              className='absolute inset-0 rounded-full bg-neutral-100/70 dark:bg-neutral-700'
+              className='absolute inset-0 rounded-full bg-white dark:bg-neutral-600'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
