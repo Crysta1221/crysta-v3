@@ -12,27 +12,23 @@ export const PCViewport = () => {
   const pathname = usePathname();
   const [selectedLink, setSelectedLink] = useState(pathname);
 
-  // 前のリンクインデックス
   const [prevLinkIndex, setPrevLinkIndex] = useState(
     links.findIndex((link) => link.href === pathname)
   );
-  // アニメーション方向
+
   const [direction, setDirection] = useState<number>(0);
 
-  // 現在のリンクインデックス
   const currentLinkIndex = links.findIndex((link) => link.href === pathname);
 
   useEffect(() => {
     setSelectedLink(pathname);
 
-    // 方向を設定
     if (prevLinkIndex !== currentLinkIndex) {
       setDirection(prevLinkIndex < currentLinkIndex ? 1 : -1);
       setPrevLinkIndex(currentLinkIndex);
     }
   }, [pathname, currentLinkIndex, prevLinkIndex]);
-
-  // アニメーションバリアント
+  
   const variants = {
     initial: (customDirection: number) => ({
       opacity: 0,
