@@ -6,9 +6,17 @@ import { useState, useEffect, useRef } from "react";
 import crystaImage from "@/assets/images/crysta.jpeg";
 import { ModeToggle } from "./theme-switch";
 import { motion } from "framer-motion";
-import { links } from "./index";
 
-export const PCViewport = () => {
+type NavLink = {
+  name: string;
+  href: string;
+};
+
+type PCViewportProps = {
+  links: NavLink[];
+};
+
+export const PCViewport = ({ links }: PCViewportProps) => {
   const pathname = usePathname();
   const [selectedLink, setSelectedLink] = useState(pathname);
 
@@ -28,19 +36,19 @@ export const PCViewport = () => {
       setPrevLinkIndex(currentLinkIndex);
     }
   }, [pathname, currentLinkIndex, prevLinkIndex]);
-  
+
   const variants = {
     initial: (customDirection: number) => ({
       opacity: 0,
-      x: customDirection * -20,
+      x: customDirection * -30,
     }),
     animate: {
       opacity: 1,
       x: 0,
       transition: {
         type: "spring",
-        stiffness: 300,
-        damping: 40,
+        bounce: 0.15,
+        duration: 0.5,
       },
     },
   };

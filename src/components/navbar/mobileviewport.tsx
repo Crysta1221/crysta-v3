@@ -10,7 +10,16 @@ import { Menu, X } from "lucide-react";
 import { links } from "./index";
 import { Button } from "@/components/ui/button";
 
-export const MobileViewport = () => {
+type NavLink = {
+  name: string;
+  href: string;
+};
+
+type MobileViewportProps = {
+  links: NavLink[];
+};
+
+export const MobileViewport = ({ links }: MobileViewportProps) => {
   const pathname = usePathname();
   const [selectedLink, setSelectedLink] = useState(pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
