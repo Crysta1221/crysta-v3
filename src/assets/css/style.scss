@@ -45,6 +45,7 @@ body {
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
+    --spacing: 0.25rem;
   }
 
   .dark {
@@ -75,6 +76,8 @@ body {
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --spacing: 0.25rem;
   }
 }
 
@@ -85,4 +88,17 @@ body {
   body {
     @apply dark:bg-zinc-950 text-foreground;
   }
+}
+
+// Swiper styles
+.swiper-pagination {
+  @apply relative mt-4 !important;
+}
+
+.swiper-pagination-bullet {
+  @apply h-[8px] w-[8px] bg-neutral-600 dark:bg-neutral-100 mx-2 !important;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-black dark:bg-white !important;
 }
