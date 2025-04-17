@@ -7,6 +7,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { SwiperOptions } from "swiper/types";
+import { useState } from "react";
 
 interface SlideData {
   title: string;
@@ -63,7 +64,7 @@ export const HomeCarousel = () => {
     },
     1280: {
       slidesPerView: 1.7,
-      spaceBetween: 40,
+      spaceBetween: 20,
       centeredSlides: false,
     },
   };
@@ -78,11 +79,13 @@ export const HomeCarousel = () => {
         modules={[Pagination]}
         pagination={{
           clickable: true,
-        }}>
+        }}
+        initialSlide={0}>
         {" "}
         {slide_data.map((slide, index) => (
           <SwiperSlide key={index} className='px-2 py-2'>
             <div className='relative w-full aspect-[3/2.5] sm:aspect-[16/7] md:aspect-[20/10] lg:aspect-[16/8] flex flex-col items-center justify-center rounded-2xl sm:rounded-3xl overflow-hidden'>
+              {" "}
               <Image
                 src={slide.image}
                 alt={slide.title}
@@ -90,13 +93,17 @@ export const HomeCarousel = () => {
                 height={500}
                 className='object-cover w-full h-full'
               />
-              <div className='absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-5'></div>
-              <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center'>
-                <h2 className='text-3xl font-bold'>{slide.title}</h2>
-                <p className='mt-2'>{slide.description}</p>
-                <Button variant='outline' className='mt-4'>
-                  {slide.label}
-                </Button>
+              <div className='absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-5'></div>{" "}
+              <div className='absolute bottom-0 mx-6 mb-4 left-0 right-0 p-4 flex justify-between items-end'>
+                <div className='text-white text-left'>
+                  <h2 className='hidden sm:block text-xl sm:text-2xl font-bold'>
+                    {slide.title}
+                  </h2>
+                  <p className='mt-1 text-white/80 line-clamp-2 sm:line-clamp-3'>
+                    {slide.description}
+                  </p>
+                </div>
+                <Button className='rounded-full'>{slide.label}</Button>
               </div>
             </div>
           </SwiperSlide>
