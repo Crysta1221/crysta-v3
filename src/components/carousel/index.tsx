@@ -105,7 +105,9 @@ export const HomeCarousel = () => {
                       {slide.description}
                     </p>
                   </div>
-                  <Button className='rounded-full'>{slide.label}</Button>
+                  <Button className='rounded-full bg-white text-black'>
+                    {slide.label}
+                  </Button>
                 </div>
               </div>
             </SwiperSlide>
