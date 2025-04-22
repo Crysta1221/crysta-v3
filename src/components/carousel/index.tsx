@@ -7,7 +7,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { SwiperOptions } from "swiper/types";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 interface SlideData {
   title: string;
@@ -42,6 +42,8 @@ const slide_data: SlideData[] = [
 ];
 
 export const HomeCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef<any>(null);
   const breakpoints: SwiperOptions["breakpoints"] = {
     0: {
       slidesPerView: 1.2,
@@ -69,7 +71,8 @@ export const HomeCarousel = () => {
     },
   };
   return (
-    <div>
+    <div className='flex flex-col'>
+      {" "}
       <Swiper
         className='w-full h-full'
         slidesPerView={1.1}
@@ -77,9 +80,8 @@ export const HomeCarousel = () => {
         centeredSlides={false}
         breakpoints={breakpoints}
         modules={[Pagination]}
-        pagination={{
-          clickable: true,
-        }}
+        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         initialSlide={0}>
         {" "}
         {slide_data.map((slide, index) => (
@@ -105,10 +107,25 @@ export const HomeCarousel = () => {
                 </div>
                 <Button className='rounded-full'>{slide.label}</Button>
               </div>
-            </div>
+            </div>{" "}
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper>{" "}
+      <div className='flex justify-center mt-4'>
+        <div className='flex gap-2'>
+          {slide_data.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => swiperRef.current?.slideTo(index)}
+              className={`h-2 w-2 rounded-full cursor-pointer ${
+                activeIndex === index
+                  ? "bg-black dark:bg-white"
+                  : "bg-neutral-400 dark:bg-neutral-600"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
