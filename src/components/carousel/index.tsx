@@ -72,7 +72,7 @@ export const HomeCarousel = () => {
   };
   return (
     <div className='flex flex-col'>
-      <div className='mx-6 md:mx-8 lg:mx-0 lg:ml-6'>
+      <div className='px-4 md:px-0 lg:ml-6 xl:px-12'>
         <p className='text-3xl px-2 mb-4'>What's New</p>
         <Swiper
           className='w-full h-full'
