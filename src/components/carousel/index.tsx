@@ -73,7 +73,9 @@ export const HomeCarousel = () => {
   return (
     <div className='flex flex-col'>
       <div className='px-4 md:px-0 lg:ml-6 xl:px-12'>
-        <p className='text-3xl px-2 mb-4'>What's New</p>
+        <div className='px-2 mb-4 border-l-[5px] border-l-[#50a3ca] items-center flex'>
+          <p className='ml-2 text-3xl -mt-0.5'>NEWS</p>
+        </div>
         <Swiper
           className='w-full h-full'
           slidesPerView={1.1}

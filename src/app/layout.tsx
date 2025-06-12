@@ -3,6 +3,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/provider";
 import "../assets/css/style.scss";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 const noto = Noto_Sans_JP({
   weight: "400",
@@ -31,6 +32,7 @@ export default function RootLayout({
           disableTransitionOnChange>
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
